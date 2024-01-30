@@ -151,7 +151,8 @@ public class Enemy : MonoBehaviour
         
 
         // 나죽자(나 자신)
-        if (collision.collider.tag == "Player")
+        //if (collision.collider.tag == "Player")
+        if (collision.collider.CompareTag ("Player"))
         {
             Destroy(gameObject);
             //플레이어 스크립트를  가져온다
@@ -168,7 +169,8 @@ public class Enemy : MonoBehaviour
                 Kill();
             
         }
-        else if (collision.collider.tag == "Bullet")
+        //else if (collision.collider.tag == "Bullet")
+        else if (collision.collider.CompareTag ("Bullet"))
         {
             Bullet bullet = collision.collider.GetComponent<Bullet>();
             //총알의 체력이 2라 할 때 주총알은 0 보조 총알은 1로 설정하고 적과 충돌해야한다.
@@ -224,6 +226,9 @@ public class Enemy : MonoBehaviour
                     //MyAnimator.Play("Hit",-1, 2)
 
             }
+            // 총알 삭제 
+            //Destroy(collision.collider.gameObject);
+            collision.collider.gameObject.SetActive(false);
         }
         
     }
